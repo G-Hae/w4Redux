@@ -1,0 +1,25 @@
+.List{
+    float: left;
+    position: left;
+    font-size: 17pt;
+    font-weight: bold;
+    margin: 10px auto 1px 40px;
+  }
+
+.Working{
+    border: 5px solid;
+    border-radius: 10px;
+    border-color: green;
+    padding: 10px 10px 10px 10px;
+    justify-content: space-between;
+  }
+  
+  .Done{
+    border: 5px solid;
+    border-radius: 10px;
+    border-color: green;
+    padding: 10px 10px 10px 10px;
+    justify-content: space-between;
+  }
+
+

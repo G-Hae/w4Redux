@@ -1,0 +1,14 @@
+.Form {
+    position: center;
+    width: 100%;
+    height: 50px;
+    background-color: rgb(233, 233, 233);
+    font-size: 14pt;
+    font-weight: bold;
+    border-radius: 10px;
+    margin: 3px 1px 1px 1px;
+    display:flex;
+    border-color: gray;
+    padding: 25px;
+    justify-content: space-between;
+  }
