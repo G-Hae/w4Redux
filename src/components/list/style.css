@@ -1,25 +1,36 @@
 .List{
-    float: left;
-    position: left;
+    display: left;
     font-size: 17pt;
     font-weight: bold;
     margin: 10px auto 1px 40px;
   }
 
+.list-container{
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .Working{
-    border: 5px solid;
+    float: left;
+    width: 30%;
+    height: 50%;
+    margin: 3px;
+    border: 3px solid;
     border-radius: 10px;
     border-color: green;
     padding: 10px 10px 10px 10px;
-    justify-content: space-between;
   }
   
   .Done{
-    border: 5px solid;
+    margin: 20px auto auto auto;
+    float: left;
+    width: 30%;
+    height: 50%;
+    margin: 3px;
+    border: 3px solid;
     border-radius: 10px;
     border-color: green;
     padding: 10px 10px 10px 10px;
-    justify-content: space-between;
-  }
+    }
 
 

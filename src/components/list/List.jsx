@@ -2,42 +2,28 @@ import './style.css'
 
 function List({arr, setArr}) {
 
-  const Click_Done = () =>{
-    const newId=arr.map((todo, i)=>{
-    if (todo.id===i){
-      todo.isDone=true
-    }
-  }
-
-  )};
-
-      // const onToggle = (userId) => {
-      //   setUsers(
-      //     users.map((user) =>
-      //       user.id === userId ? { ...user, active: !user.active } : user
-      //     )
-      //   );
-      // };
-
-
-
     return (
       <div className="List">
-        <h2>Working.. 🔥</h2>
-        <div>
-          {arr.map((arr) => {
-            if (arr.isDone=false) {
+        <h2 style={{display: 'left'}}>Working.. 🔥</h2>
+        <div className="list-container">
+          {arr.map((val, i) => {
+            if (val.isDone===false) {
                 return (
                   <div className="Working">
                     <div>
-                      <h2>{arr.title}</h2>
-                      <div>{arr.content}</div>
+                      <h2>{val.title}</h2>
+                      <div>{val.content}</div>
                     </div>
                     <div>
                     <button onClick={(e)=>{
                       e.target.parentElement.parentElement.remove()
                      }}>삭제하기</button>
-                      <button onClick={Click_Done}>완료</button>
+                     
+                      <button onClick={()=>{
+                        let copy = [...arr];
+                        copy[i].isDone=true;
+                        setArr(copy)
+                      }}>완료</button>
                     </div>
                   </div>
               );
@@ -47,36 +33,36 @@ function List({arr, setArr}) {
           })}
         </div>
 
-
-        <h2> Done..! 🎉</h2>
-        <div>
-          {arr.map((arr) => {
-          if (arr.isDone=true) {
+        <div><h2 style={{display: 'left'}}> Done..! 🎉</h2></div>
+        <div className="list-container">
+          {arr.map((val, i) => {
+          if (val.isDone===true) {
             return (
             <div className="Done">
               <div>
-                <h2>{arr.title}</h2>
-                <div>{arr.content}</div>
+                <h2>{val.title}</h2>
+                <div>{val.content}</div>
               </div>
               <div>
               <button onClick={(e)=>{
                 e.target.parentElement.parentElement.remove()
-               }}>삭제하기</button>
-                <button onClick={Click_Done}>취소</button>
-              </div>
+              }}>삭제하기</button>
+                      <button onClick={()=>{
+                        let copy = [...arr];
+                        copy[i].isDone=false;
+                        setArr(copy)
+                      }}>취소</button>
             </div>
+          </div>
         );
         } else {
           return null;
         }
     })}
   </div>
-
-
-
-
       </div>
     );
   }
-  
   export default List;
+
+
