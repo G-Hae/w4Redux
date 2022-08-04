@@ -1,40 +1,68 @@
-import React from 'react';
-import './style.css';
-import {useState} from 'react';
+//컴포넌트에서 리덕스 데이터를 사용(불러오기
+import React from "react";
+import { useState } from "react";
+import { createTodo } from "../../redux/modules/todos";
+import nextId from "react-id-generator";
+import { useDispatch, useSelector } from "react-redux";
 
-function Form({arr, setArr}) {
+const Form =()=>{
+  const todos = useSelector{(state)=>state.todoReducer.todos;}
 
-  let [id, setId] =useState(0)
-  const [inputTitle, setInputTitle] = useState('')
-  const [inputContent, setInputContent] = useState('')
+  const id = nextId(); //모듈을 통해 새로운 id 발급
+  const [todo, setTodo] =useState({
+  id: 0,
+  title: "",
+  body: "",
+  isDone: false,
+});
 
-  const UponInputTitle = (e) =>{setInputTitle(e.target.value)}
-  const UponInputContent = (e) =>{setInputContent(e.target.value)}
-  
-  //버튼 클릭시 실행되는 함수
-  const click_btn =()=>{
-    let copy=[...arr];
-    copy.push({
-      id: id,
-      title: inputTitle,
-      content: inputContent,
-      isDone: false
-    });
-    setArr(copy);
-    setId(id+1)
-    console.log(copy)
-  }
+
+const dispatch = useDispatch(); //dispatch변수사용
+  const onChangeHandler = (e) =>{const {name, value} = e.target;
+    setTodo(
+    {...todo,
+    [name]:value}
+  )};
+
+  const onSubmitHandler=(e)=>{e.preventDefault();
+    if (todo.title.trim() === "" || todo.body.trim() === "") return;
+    //자동 새로고침 방지를 위해 반드시 들어가야 하는 문구
+
+  dispatch(createTodo({ ...todo, id }));
+  //todos에 정의한 createTodo를 dispatch해서 접수
+
+  setTodo({
+    id: 0,
+    title: "",
+    body: "",
+    isDone: false,
+  });
+
+  // //버튼 클릭시 실행되는 함수
+  // const click_btn =()=>{
+  //   let copy=[...todo];
+  //   copy.push({
+  //     id: id,
+  //     title: inputTitle,
+  //     content: inputContent,
+  //     isDone: false
+  //   });
+  //   setTodo(copy);
+  //   setId(id+1)
+  //   console.log(copy)
+  // }
 
   return (
       <div className="Form">
         <div>
-          제목 <input type="text" name="title" value={arr.title} onChange={UponInputTitle}/>
-          내용 <input type="text" name="content" value={arr.content} onChange={UponInputContent}/>
+          제목 <input type="text" name="title" value={todo.title} onChange={onChangeHandler}/>
+          내용 <input type="text" name="content" value={todo.content} onChange={onChangeHandler}/>
         </div>
         <div>
-        <button onClick={click_btn}>추가하기</button>
+        <button onClick={onSubmitHandler}>추가하기</button>
         </div>
       </div>
     );
   }
+}
 export default Form;

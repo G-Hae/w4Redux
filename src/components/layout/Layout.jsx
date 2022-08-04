@@ -7,13 +7,13 @@ import {useState} from 'react';
 
 function Layout() {
 
-  const [arr, setArr] = useState([]); 
+  const [todo, setTodo] = useState([]); 
 
     return (
       <div className="Layout">
         <Header/>
-        <Form arr={arr} setArr={setArr}/>
-        <List arr={arr} setArr={setArr}/>
+        <Form todo={todo} setTodo={setTodo}/>
+        <List todo={todo} setTodo={setTodo}/>
       </div>
       );
   }
